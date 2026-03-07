@@ -5,7 +5,7 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <Deterministic>true</Deterministic>
-    <ContinuousIntegrationBuild Condition="'$(CI)' != 'false' or '$(GITHUB_ACTIONS)' != 'false'">true</ContinuousIntegrationBuild>
+    <ContinuousIntegrationBuild Condition="'$(CI)' == 'true' or '$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
 
     <Authors>MoeGodot(me@kawayi.moe)</Authors>
     <Copyright>Copyright ©2026 MoeGodot(me@kawayi.moe). All Rights Reserved.</Copyright>
