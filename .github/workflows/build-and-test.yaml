@@ -1,5 +1,5 @@
 name: BuildAndTest
-'on':
+"on":
     - push
 jobs:
     build-and-test:
@@ -13,7 +13,7 @@ jobs:
                 configuration:
                     - Release
                     - Debug
-        runs-on: '${{ matrix.os }}'
+        runs-on: "${{ matrix.os }}"
         steps:
             - uses: actions/checkout@v5
             - name: Setup .NET 10
