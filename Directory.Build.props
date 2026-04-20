@@ -1,9 +1,10 @@
 <Project>
   <PropertyGroup>
     <TargetFramework>net11.0</TargetFramework>
+    <LangVersion>15.0</LangVersion>
+
     <Nullable>enable</Nullable>
     <ImplicitUsings>true</ImplicitUsings>
-    <LangVersion>Latest</LangVersion>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>
@@ -27,23 +28,30 @@
     <RepositoryUrl>https://github.com/moegodot/</RepositoryUrl>
 
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-    <RestoreLockedMode>true</RestoreLockedMode>
+    <RestoreLockedMode Condition="'$(CI)' == 'true' or '$(GITHUB_ACTIONS)' == 'true'">true</RestoreLockedMode>
 
     <WarningLevel>4</WarningLevel>
+
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(MSBuildProjectName.EndsWith(`.Tests`))' != 'true'">
-      <IsPackable>true</IsPackable>
+  <PropertyGroup>
+    <IsTestProject>false</IsTestProject>
+    <IsTestProject Condition="$(MSBuildProjectName.EndsWith('.Tests'))">true</IsTestProject>
+
+    <IsCliProject>false</IsCliProject>
+    <IsCliProject Condition="$(MSBuildProjectName.EndsWith('.Cli'))">true</IsCliProject>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(IsTestProject)' != 'true'">
       <GenerateDocumentationFile>true</GenerateDocumentationFile>
-      <OutputType Condition="'$(MSBuildProjectName.EndsWith(`.Cli`))' != 'true'">Library</OutputType>
-      <OutputType Condition="'$(MSBuildProjectName.EndsWith(`.Cli`))' == 'true'">Exe</OutputType>
+      <OutputType>Library</OutputType>
+      <OutputType Condition="'$(IsCliProject)' == 'true'">Exe</OutputType>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(MSBuildProjectName.EndsWith(`.Tests`))' == 'true'">
-      <IsPackable>false</IsPackable>
+  <PropertyGroup Condition="'$(IsTestProject)' == 'true'">
       <GenerateDocumentationFile>false</GenerateDocumentationFile>
       <OutputType>Exe</OutputType>
-      <NoWarn>$(NoWarn);CS1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -51,15 +59,9 @@
     <None Include="$(MSBuildThisFileDirectory)/README.md" Pack="true" PackagePath="\"/>
 
     <AdditionalFiles Include="$(MSBuildThisFileDirectory)/BannedSymbols.txt" Pack="false"/>
-    <PackageReference Include="Microsoft.CodeAnalysis.BannedApiAnalyzers">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
 
-    <PackageReference Include="MinVer" Version="7.0.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" PrivateAssets="All"/>
+    <PackageReference Include="MinVer" PrivateAssets="All"/>
     <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All"/>
   </ItemGroup>
 </Project>
