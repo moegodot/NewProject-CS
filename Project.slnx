@@ -9,7 +9,7 @@
   <Folder Name="/.codex/">
     <File Path="config.toml" />
   </Folder>
-  <Folder Name="/.codex/agents">
+  <Folder Name="/.codex/agents/">
     <File Path="architect.toml" />
     <File Path="reviewer.toml" />
   </Folder>
