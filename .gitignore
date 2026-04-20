@@ -7,3 +7,5 @@ obj
 Thumbs.db
 *.suo
 *.user
+target
+.nuget

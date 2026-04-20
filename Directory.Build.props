@@ -1,5 +1,9 @@
 <Project>
   <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <LangVersion>Latest</LangVersion>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>
@@ -7,8 +11,8 @@
     <Deterministic>true</Deterministic>
     <ContinuousIntegrationBuild Condition="'$(CI)' == 'true' or '$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
 
-    <Authors>MoeGodot(me@kawayi.moe)</Authors>
-    <Copyright>Copyright ©2026 MoeGodot(me@kawayi.moe). All Rights Reserved.</Copyright>
+    <Authors>AwaitGodot</Authors>
+    <Copyright>Copyright ©2026 MoeGodot(me@kawayi.moe)</Copyright>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
 
@@ -19,18 +23,43 @@
     <MinVerMinimumMajorMinor>0.1</MinVerMinimumMajorMinor>
     <MinVerDefaultPreReleaseIdentifiers>snapshot.0</MinVerDefaultPreReleaseIdentifiers>
 
-      <IsPackable Condition="$([System.IO.Directory]::GetParent($(MSBuildProjectFullPath))) != 'src'">false</IsPackable>
+    <PackageProjectUrl>https://github.com/moegodot/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/moegodot/</RepositoryUrl>
 
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <RestoreLockedMode>true</RestoreLockedMode>
+
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(MSBuildProjectName.EndsWith(`.Tests`))' != 'true'">
+      <IsPackable>true</IsPackable>
+      <GenerateDocumentationFile>true</GenerateDocumentationFile>
+      <OutputType Condition="'$(MSBuildProjectName.EndsWith(`.Cli`))' != 'true'">Library</OutputType>
+      <OutputType Condition="'$(MSBuildProjectName.EndsWith(`.Cli`))' == 'true'">Exe</OutputType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(MSBuildProjectName.EndsWith(`.Tests`))' == 'true'">
+      <IsPackable>false</IsPackable>
+      <GenerateDocumentationFile>false</GenerateDocumentationFile>
+      <OutputType>Exe</OutputType>
+      <NoWarn>$(NoWarn);CS1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)/images/icon.png" Pack="true" PackagePath="\"/>
     <None Include="$(MSBuildThisFileDirectory)/README.md" Pack="true" PackagePath="\"/>
 
-    <PackageReference Include="MinVer" Version="7.0.0">
+    <AdditionalFiles Include="$(MSBuildThisFileDirectory)/BannedSymbols.txt" Pack="false"/>
+    <PackageReference Include="Microsoft.CodeAnalysis.BannedApiAnalyzers">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
 
+    <PackageReference Include="MinVer" Version="7.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All"/>
   </ItemGroup>
 </Project>
