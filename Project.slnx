@@ -20,4 +20,5 @@
   </Folder>
   <Folder Name="/tests/">
   </Folder>
+  <Folder Name="/vendors/" />
 </Solution>
