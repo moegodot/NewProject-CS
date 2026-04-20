@@ -7,11 +7,11 @@
     <File Path=".gitignore" />
   </Folder>
   <Folder Name="/.codex/">
-    <File Path="config.toml" />
+    <File Path=".codex/config.toml" />
   </Folder>
   <Folder Name="/.codex/agents/">
-    <File Path="architect.toml" />
-    <File Path="reviewer.toml" />
+    <File Path=".codex/agents/architect.toml" />
+    <File Path=".codex/agents/reviewer.toml" />
   </Folder>
   <Folder Name="/samples/">
   </Folder>
