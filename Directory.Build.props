@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
-    <TargetFramework>net11.0</TargetFramework>
-    <LangVersion>15.0</LangVersion>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>14.0</LangVersion>
 
     <Nullable>enable</Nullable>
     <ImplicitUsings>true</ImplicitUsings>
@@ -63,5 +63,8 @@
     <PackageReference Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" PrivateAssets="All"/>
     <PackageReference Include="MinVer" PrivateAssets="All"/>
     <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All"/>
+
+    <PackageReference Condition="'$(IsTestProject)' == 'true'" Include="TUnit"/>
   </ItemGroup>
 </Project>
+
