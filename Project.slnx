@@ -11,6 +11,7 @@
     <File Path="CONTRIBUTING.md" />
     <File Path=".gitattributes" />
   </Folder>
+  <Folder Name="/building/" />
   <Folder Name="/.github/" />
   <Folder Name="/.github/workflows/">
     <File Path=".github/workflows/build-and-test.yaml"/>
