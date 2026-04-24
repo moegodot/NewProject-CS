@@ -26,6 +26,8 @@
   <Folder Name="/samples/">
   </Folder>
   <Folder Name="/sources/" />
+  <Folder Name="/sources/managed/" />
+  <Folder Name="/sources/native" />
   <Folder Name="/tests/">
   </Folder>
   <Folder Name="/vendors/" />
