@@ -3,9 +3,8 @@
 
 namespace Project.Maintainer;
 
-public class Maintainer
+public class Maintainer : Maintenance
 {
     public const string MaintainerPath = "engineering/Project.Maintainer";
-
-
+    public override string Paths() => MaintainerPath;
 }

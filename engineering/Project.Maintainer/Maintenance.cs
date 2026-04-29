@@ -1,16 +1,11 @@
 // Copyright (c) 2026 GodotAsync<me@kawayi.moe>.
 // Licensed under the GNU Affero General Public License v3-or-later license.
 
-using Project.Tests;
-
 namespace Project.Maintainer;
 
 public abstract class Maintenance
 {
     public abstract string Paths();
-
-    public const string StartColor = "\e[32;45m";
-    public const string StopColor = "\e[0m";
 
     public void Maintain()
     {

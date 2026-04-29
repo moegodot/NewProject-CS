@@ -3,13 +3,14 @@
 
 using System.Diagnostics;
 
-namespace Project.Tests;
+namespace Project.Maintainer;
 
 internal static class Helper
 {
     private static void Git(string dir,params string[] arguments)
     {
         string exe = OperatingSystem.IsWindows() ? ".exe" : string.Empty;
+        OutColor($"run git{exe} {string.Join(' ',arguments)} at {dir}");
         var info = new ProcessStartInfo
         {
             FileName = $"git{exe}", UseShellExecute = false, WorkingDirectory = dir, CreateNoWindow = true,
@@ -43,6 +44,7 @@ internal static class Helper
         Git(dir,
             "sparse-checkout",
             "set",
+            "--skip-checks",
             fileOrDir);
     }
 

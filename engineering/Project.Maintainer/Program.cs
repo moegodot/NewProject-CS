@@ -1,7 +1,6 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 using System.Text.Unicode;
-using Project.Tests;
 
 namespace Project.Maintainer;
 
@@ -67,10 +66,11 @@ class Program
         Helper.Update(UpdateContentDirectory);
 
         // new Maintainer(),
-        Maintenance[] maintenances = [new ProjectProps()];
+        Maintenance[] maintenances = [new ProjectProps(),new Icon(),new Maintainer()];
 
         foreach (Maintenance maintenance in maintenances)
         {
+            OutColor($"execute maintainer {maintenance.GetType().Name}");
             maintenance.Maintain();
         }
     }
