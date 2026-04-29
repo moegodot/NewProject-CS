@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+      <OutputType>Exe</OutputType>
       <WarningLevel>3</WarningLevel>
     </PropertyGroup>
 

@@ -26,7 +26,7 @@ public abstract class Maintenance
             return;
         }
 
-        Directory.Delete(dst);
+        Directory.Delete(dst, true);
         Directory.Move(src,
                        dst);
         Console.WriteLine($"{StartColor}copy directory from {src} to {dst}{StopColor}");
