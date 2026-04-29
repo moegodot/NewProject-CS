@@ -6,15 +6,15 @@
     <File Path="global.json" />
     <File Path=".gitignore" />
     <File Path=".editorconfig" />
+    <File Path="Project.props" />
     <File Path="README.md" />
     <File Path="AGENTS.md" />
     <File Path="CONTRIBUTING.md" />
     <File Path=".gitattributes" />
   </Folder>
-  <Folder Name="/building/" />
   <Folder Name="/.github/" />
   <Folder Name="/.github/workflows/">
-    <File Path=".github/workflows/build-and-test.yaml"/>
+    <File Path=".github/workflows/build-and-test.yaml" />
   </Folder>
   <Folder Name="/.codex/">
     <File Path=".codex/config.toml" />
@@ -26,12 +26,17 @@
   <Folder Name="/samples/">
   </Folder>
   <Folder Name="/sources/" />
-  <Folder Name="/sources/managed/" />
-  <Folder Name="/sources/native" />
+  <Folder Name="/sources/managed/">
+  </Folder>
   <Folder Name="/tests/">
+    <Project Path="tests/Project.Tests/Project.Tests.csproj" />
   </Folder>
   <Folder Name="/vendors/" />
   <Folder Name="/benchmarks/" />
+  <Folder Name="/building/">
+  </Folder>
+  <Folder Name="/engineering/">
+    <Project Path="engineering/Project.Maintainer/Project.Maintainer.csproj" />
+  </Folder>
   <Folder Name="/documents/" />
 </Solution>
-

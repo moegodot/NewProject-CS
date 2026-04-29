@@ -1,18 +1,19 @@
 #:schema https://developers.openai.com/codex/config-schema.json
 
 model = "gpt-5.4"
-review_model = "gpt-5.4"
+model_reasoning_effort = "high"
+
+review_model = "gpt-5.5"
 
 personality = "pragmatic"
-web_search = "live"
-
-sandbox_mode = "workspace-write"
-approval_policy = "untrusted"
-
-model_reasoning_effort = "high"
 model_reasoning_summary = "concise"
 
-project_root_markers = [".git", "wakaze.root"]
+sandbox_mode = "workspace-write"
+approval_policy = "on-request"
+
+web_search = "live"
+
+project_root_markers = [".git",".godot.async.proj.root"]
 
 project_doc_max_bytes = 65536
 
