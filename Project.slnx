@@ -28,9 +28,7 @@
   <Folder Name="/sources/" />
   <Folder Name="/sources/managed/">
   </Folder>
-  <Folder Name="/tests/">
-    <Project Path="tests/Project.Tests/Project.Tests.csproj" />
-  </Folder>
+  <Folder Name="/tests/" />
   <Folder Name="/vendors/" />
   <Folder Name="/benchmarks/" />
   <Folder Name="/building/">
