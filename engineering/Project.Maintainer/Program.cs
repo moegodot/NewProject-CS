@@ -1,4 +1,4 @@
-﻿using System.Security.Cryptography;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.Unicode;
 
@@ -60,13 +60,13 @@ class Program
     {
         if (!Directory.Exists(UpdateContentDirectory))
         {
-            Helper.ShallowClone(Upstream, Path.GetTempPath(),UpdateContentDirectoryName);
+            Helper.ShallowClone(Upstream, Path.GetTempPath(), UpdateContentDirectoryName);
         }
 
         Helper.Update(UpdateContentDirectory);
 
         // new Maintainer(),
-        Maintenance[] maintenances = [new ProjectProps(),new ProjectTargets(),new Icon(),new Maintainer()];
+        Maintenance[] maintenances = [new ProjectProps(), new ProjectTargets(), new Icon(), new Maintainer()];
 
         foreach (Maintenance maintenance in maintenances)
         {

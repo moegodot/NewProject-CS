@@ -7,13 +7,16 @@ namespace Project.Maintainer;
 
 internal static class Helper
 {
-    private static void Git(string dir,params string[] arguments)
+    private static void Git(string dir, params string[] arguments)
     {
         string exe = OperatingSystem.IsWindows() ? ".exe" : string.Empty;
-        OutColor($"run git{exe} {string.Join(' ',arguments)} at {dir}");
+        OutColor($"run git{exe} {string.Join(' ', arguments)} at {dir}");
         var info = new ProcessStartInfo
         {
-            FileName = $"git{exe}", UseShellExecute = false, WorkingDirectory = dir, CreateNoWindow = true,
+            FileName = $"git{exe}",
+            UseShellExecute = false,
+            WorkingDirectory = dir,
+            CreateNoWindow = true,
         };
         foreach (string arg in arguments)
         {
@@ -25,11 +28,11 @@ internal static class Helper
 
         if (process.ExitCode != 0)
         {
-            throw new InvalidOperationException($"failed to execute git{exe} {string.Join(' ',arguments)} at {dir}");
+            throw new InvalidOperationException($"failed to execute git{exe} {string.Join(' ', arguments)} at {dir}");
         }
     }
 
-    public static void ShallowClone(string url,string dir,string to)
+    public static void ShallowClone(string url, string dir, string to)
     {
         Git(dir, "clone",
             "--depth=1",
@@ -39,7 +42,7 @@ internal static class Helper
             to);
     }
 
-    public static void ShallowCheckout(string dir,string fileOrDir)
+    public static void ShallowCheckout(string dir, string fileOrDir)
     {
         Git(dir,
             "sparse-checkout",

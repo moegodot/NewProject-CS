@@ -17,7 +17,7 @@ public abstract class Maintenance
         if (File.Exists(src))
         {
             File.Delete(dst);
-            File.Copy(src,dst);
+            File.Copy(src, dst);
             Console.WriteLine($"{StartColor}copy file from {src} to {dst}{StopColor}");
         }
 
