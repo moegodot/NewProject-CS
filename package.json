@@ -1,0 +1,9 @@
+{
+  "name": "dependency-manager",
+  "private": true,
+  "devDependencies": {},
+  "peerDependencies": {},
+  "dependencies": {
+    "dprint": "^0.54.0",
+  }
+}

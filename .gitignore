@@ -12,3 +12,4 @@ targets
 .nuget
 .snupkg
 nupkgs
+node_modules/
