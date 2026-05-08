@@ -4,6 +4,11 @@
   "devDependencies": {},
   "peerDependencies": {},
   "dependencies": {
-    "dprint": "^0.54.0"
+    "@commitlint/cli": "^20.5.3",
+    "dprint": "^0.54.0",
+    "lefthook": "^2.1.6"
+  },
+  "scripts": {
+    "init": "bun install && lefthook install"
   }
 }
