@@ -23,8 +23,9 @@ sealed class Program
                   .CreateLogger();
 
         var builder = new ContainerBuilder();
-        builder.RegisterAssemblyModules(Assembly.GetCallingAssembly());
+        builder.RegisterAssemblyModules(typeof(Program).Assembly);
         builder.RegisterInstance(log).AsSelf().As<ILogger>().SingleInstance();
+        builder.RegisterType<Maintaining>().AsSelf().SingleInstance();
         await using var container = builder.Build();
 
         var logger = container.Resolve<ILogger>().ForContext<Program>();
