@@ -23,7 +23,7 @@ sealed class Program
                   .CreateLogger();
 
         var builder = new ContainerBuilder();
-        builder.RegisterAssemblyModules(typeof(Program).Assembly);
+        builder.RegisterModule(new SyncFileModule());
         builder.RegisterInstance(log).AsSelf().As<ILogger>().SingleInstance();
         builder.RegisterType<Maintaining>().AsSelf().SingleInstance();
         await using var container = builder.Build();
