@@ -31,6 +31,11 @@ public class GitService
 
     public Task ShallowCheckout(params string[] fileOrDir)
     {
+        if (fileOrDir.Length == 0)
+        {
+            return Task.CompletedTask;
+        }
+
         return Helper.Git(Logger,
                    UpstreamGitRepoPath,
                    ["sparse-checkout",
