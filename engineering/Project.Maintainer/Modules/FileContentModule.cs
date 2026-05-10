@@ -13,13 +13,6 @@ public class FileContentModule : Module
         [
             new("global.json",
                 """
-                    "sdk": {
-                      "version": "10.0.100",
-                      "rollForward": "latestFeature",
-                      "allowPrerelease": true
-                """),
-            new("global.json",
-                """
                 "runner": "Microsoft.Testing.Platform"
                 """.Trim()),
             new("dotnet-tools.json", "nuget-license"),
