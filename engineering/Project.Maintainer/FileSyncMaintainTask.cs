@@ -43,10 +43,9 @@ public sealed class FileSyncMaintainTask(ILogger logger,
         string upstream = Path.Combine(Git.UpstreamGitRepoPath, paths);
         string local = Path.Combine(maintaining.ProjectRoot, paths);
 
-        if (!File.Exists(upstream))
+        if (!File.Exists(local))
         {
             Logger.Verbose("copy file from {src} to {dst}", upstream, local);
-            File.Delete(local);
             File.Copy(upstream, local);
             return;
         }

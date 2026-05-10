@@ -14,7 +14,7 @@ public class SyncFileModule : Module
                 new("Project.targets", new Overlay()),
                 new("Project.props", new Overlay()),
                 new("images/icon.png", new Overlay()),
-                new("images/icon.png.kra", new Overlay()),
+                new("images/icon.kra", new Overlay()),
                 new("readme_image_1.png", new Overlay()),
                 new("contributing_image_1.png", new Overlay()),
                 new("Packages.targets", new Overlay()),
