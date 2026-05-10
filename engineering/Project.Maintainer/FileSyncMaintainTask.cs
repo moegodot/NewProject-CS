@@ -7,7 +7,7 @@ using Serilog;
 
 namespace Project.Maintainer;
 
-public sealed class FileSyncMaintainer(ILogger logger,
+public sealed class FileSyncMaintainTask(ILogger logger,
                                        IEnumerable<FileSystemSync> fileSystemSyncs,
                                        GitService git)
     : IMaintainTask
