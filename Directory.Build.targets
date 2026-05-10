@@ -1,3 +1,7 @@
 <Project>
+
+  <!-- Include ^await GodotAsync()$ BEGIN -->
   <Import Project="$(MSBuildThisFileDirectory)/Project.targets" />
+  <!-- Include ^await GodotAsync()$ END -->
+
 </Project>

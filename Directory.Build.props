@@ -1,5 +1,8 @@
 <Project>
+
+  <!-- Include ^await GodotAsync()$ BEGIN -->
   <Import Project="$(MSBuildThisFileDirectory)/Project.props" />
+  <!-- Include ^await GodotAsync()$ END -->
 
   <PropertyGroup>
     <PackageProjectUrl>https://github.com/moegodot/</PackageProjectUrl>

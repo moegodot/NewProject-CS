@@ -1,4 +1,8 @@
 <Project>
+
+  <!-- Packaging ^await GodotAsync()$ BEGIN -->
   <Import Project="$(MSBuildThisFileDirectory)/Packages.props" />
+  <!-- Packaging ^await GodotAsync()$ END -->
+
 </Project>
 

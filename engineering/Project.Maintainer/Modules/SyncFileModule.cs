@@ -23,11 +23,14 @@ public class SyncFileModule : Module
                 new("commitlint.config.js", new Overlay()),
                 new("tsconfig.json", new Overlay()),
                 new("global.json", new Overlay()),
+                new(".editorconfig", new Overlay()),
                 new("allowed-licenses.json", new Overlay()),
                 new("lefthook.basic.lints.yml", new Overlay()),
                 new("lefthook.yml", OverlayPart.Hash("CI")),
                 new("CONTRIBUTING.md", OverlayPart.Xml("TitleImage")),
-                new("README.md", OverlayPart.Xml("TitleImage")),
+                new("Directory.Build.props", OverlayPart.Xml("Include")),
+                new("Directory.Build.targets", OverlayPart.Xml("Include")),
+                new("Directory.Packages.props", OverlayPart.Xml("Packaging")),
             ];
 
         foreach (FileSystemSync item in items)
