@@ -27,13 +27,23 @@ public record OverlayPart(string PartStartMark,
     }
 
     public static string XmlBegin(string id) =>
-        $"<!-- {Id(id)} {Program.UniqueBrandMarker}-{Program.UniqueBrandStartMarker} -->";
+        $"<!-- {Id(id)} {Program.UniqueBrandMarker} {Program.UniqueBrandStartMarker} -->";
 
     public static string XmlEnd(string id) =>
-        $"<!-- {Id(id)} {Program.UniqueBrandMarker}-{Program.UniqueBrandEndMarker} -->";
+        $"<!-- {Id(id)} {Program.UniqueBrandMarker} {Program.UniqueBrandEndMarker} -->";
+
+
+    public static string HashBegin(string id) =>
+        $"# {Id(id)} {Program.UniqueBrandMarker} {Program.UniqueBrandStartMarker}";
+
+    public static string HashEnd(string id) =>
+        $"# {Id(id)} {Program.UniqueBrandMarker} {Program.UniqueBrandEndMarker}";
 
     public static OverlayPart Xml(string id) =>
         new(XmlBegin(id), XmlEnd(id));
+
+    public static OverlayPart Hash(string id) =>
+        new(HashBegin(id), HashEnd(id));
 
     private static int FindMark(string input, string mark)
     {

@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/items/">
+    <File Path="allowed-licenses.json" />
     <File Path="BannedSymbols.txt" />
     <File Path="Directory.Build.props" />
     <File Path="Directory.Packages.props" />

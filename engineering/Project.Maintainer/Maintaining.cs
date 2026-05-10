@@ -1,6 +1,7 @@
 // Copyright (c) 2026 GodotAsync<me@kawayi.moe>.
 // Licensed under the GNU Affero General Public License v3-or-later license.
 
+using System.Collections.Concurrent;
 using Serilog;
 
 namespace Project.Maintainer;
@@ -10,6 +11,8 @@ public class Maintaining
     public ILogger Logger { get; }
 
     public string ProjectRoot { get; }
+
+    public ConcurrentDictionary<string, object?> Items { get; }
 
     public const string RootMarker = ".godot.async.proj.root";
 

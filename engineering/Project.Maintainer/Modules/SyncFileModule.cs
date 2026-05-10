@@ -3,7 +3,7 @@
 
 using Autofac;
 
-namespace Project.Maintainer;
+namespace Project.Maintainer.Modules;
 
 public class SyncFileModule : Module
 {
@@ -18,6 +18,14 @@ public class SyncFileModule : Module
                 new("images/readme_image_1.png", new Overlay()),
                 new("images/contributing_image_1.png", new Overlay()),
                 new("Packages.targets", new Overlay()),
+                new("dprint.json", new Overlay()),
+                new("gitleaks.toml", new Overlay()),
+                new("commitlint.config.js", new Overlay()),
+                new("tsconfig.json", new Overlay()),
+                new("global.json", new Overlay()),
+                new("allowed-licenses.json", new Overlay()),
+                new("lefthook.basic.lints.yml", new Overlay()),
+                new("lefthook.yml", OverlayPart.Hash("CI")),
                 new("CONTRIBUTING.md", OverlayPart.Xml("TitleImage")),
                 new("README.md", OverlayPart.Xml("TitleImage")),
             ];

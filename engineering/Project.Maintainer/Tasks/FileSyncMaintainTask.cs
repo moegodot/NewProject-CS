@@ -2,26 +2,23 @@
 // Licensed under the GNU Affero General Public License v3-or-later license.
 
 using System.Collections.Immutable;
-using System.Diagnostics;
 using Serilog;
 
-namespace Project.Maintainer;
+namespace Project.Maintainer.Tasks;
 
 public sealed class FileSyncMaintainTask(ILogger logger,
                                        IEnumerable<FileSystemSync> fileSystemSyncs,
                                        GitService git)
-    : IMaintainTask
+    : FileBasedTask
 {
     public ImmutableArray<FileSystemSync> FileSystemSyncs { get; } = [.. fileSystemSyncs];
 
     public ILogger Logger { get; } = logger.ForContext<FileSystemSync>();
 
-    public GitService Git { get; } = git;
-
-    private void Overlay(string path, Maintaining maintaining)
+    private void Overlay(string path, string root, Overlay _)
     {
-        string upstream = Path.Combine(Git.UpstreamGitRepoPath, path);
-        string local = Path.Combine(maintaining.ProjectRoot, path);
+        string upstream = Path.Combine(GitService.UpstreamGitRepoPath, path);
+        string local = Path.Combine(root, path);
 
         if (File.Exists(upstream))
         {
@@ -37,11 +34,10 @@ public sealed class FileSyncMaintainTask(ILogger logger,
                        local);
     }
 
-    private async Task OverlayPart(string path, OverlayPart part, Maintaining maintaining)
+    private async Task OverlayPart(string path, string root, OverlayPart part)
     {
-        string paths = path;
-        string upstream = Path.Combine(Git.UpstreamGitRepoPath, paths);
-        string local = Path.Combine(maintaining.ProjectRoot, paths);
+        string upstream = Path.Combine(GitService.UpstreamGitRepoPath, path);
+        string local = Path.Combine(root, path);
 
         if (!File.Exists(local))
         {
@@ -59,37 +55,29 @@ public sealed class FileSyncMaintainTask(ILogger logger,
                                                   part.Extract(await File.ReadAllTextAsync(upstream))));
     }
 
-    public async Task Maintain(Maintaining maintaining)
+    protected override string[] PrepareFiles(Maintaining maintaining)
     {
-        List<(Overlay, FileSystemSync)> overlays = [];
-        List<(OverlayPart, FileSystemSync)> overlayParts = [];
-        List<string> paths = [];
+        return FileSystemSyncs.Select(a => a.Path).ToArray();
+    }
+
+    protected override async Task Execute(Maintaining maintaining)
+    {
+        var root = maintaining.ProjectRoot;
 
         foreach (FileSystemSync fileSystemSync in FileSystemSyncs)
         {
-            paths.Add(fileSystemSync.Path);
-            switch (fileSystemSync.Policy)
+            fileSystemSync.Deconstruct(out string path, out SyncPolicy policy);
+            switch (policy)
             {
                 case Overlay overlay:
-                    overlays.Add((overlay, fileSystemSync));
+                    Overlay(path, root, overlay);
                     break;
                 case OverlayPart overlayPart:
-                    overlayParts.Add((overlayPart, fileSystemSync));
+                    await OverlayPart(path, root, overlayPart);
                     break;
                 default:
                     throw new InvalidOperationException($"unknown {fileSystemSync.GetType().FullName}");
             }
-        }
-
-        await Git.ShallowCheckout([.. paths]);
-
-        foreach (var overlay in overlays)
-        {
-            Overlay(overlay.Item2.Path, maintaining);
-        }
-        foreach (var overlay in overlayParts)
-        {
-            await OverlayPart(overlay.Item2.Path, overlay.Item1, maintaining);
         }
     }
 }

@@ -1,0 +1,13 @@
+commit-msg:
+  jobs:
+    - name: lint-commit-msg
+      run: bunx commitlint --edit "{1}"
+
+pre-commit:
+  jobs:
+    - name: lint-format
+      run: bunx dprint check --config ./dprint.json
+    - name: lint-leak
+      run: gitleaks git . --config ./gitleaks.toml --report-path reports/gitleaks/gitleaks-report.json --baseline-path reports/gitleaks/gitleaks-report.json
+    - name: lint-licenses
+      run: dotnet tool run nuget-license -i Project.slnx --error-only --allowed-license-types  allowed-licenses.json
