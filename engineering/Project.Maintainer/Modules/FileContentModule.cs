@@ -13,30 +13,16 @@ public class FileContentModule : Module
         [
             new("global.json",
                 """
-                "sdk": {
-                  "version": "10.0.100",
-                  "rollForward": "latestFeature",
-                  "allowPrerelease": true
-                },
-                "test": {
-                  "runner": "Microsoft.Testing.Platform"
-                }
-                """.Trim()),
-
-            new("dotnet-tools.json",
+                    "sdk": {
+                      "version": "10.0.100",
+                      "rollForward": "latestFeature",
+                      "allowPrerelease": true
+                """),
+            new("global.json",
                 """
-                "version": 1,
-                "isRoot": true,
-                "tools": {
-                  "nuget-license": {
-                    "version": "4.0.10",
-                    "commands": [
-                      "nuget-license"
-                    ],
-                    "rollForward": false
-                  }
-                }
+                "runner": "Microsoft.Testing.Platform"
                 """.Trim()),
+            new("dotnet-tools.json", "nuget-license"),
             new("Directory.Build.props", """<Import Project="$(MSBuildThisFileDirectory)/Project.props" />"""),
             new ("Directory.Build.targets", """<Import Project="$(MSBuildThisFileDirectory)/Project.targets" />"""),
             new ("Directory.Packages.targets", """<Import Project="$(MSBuildThisFileDirectory)/Packages.targets" />"""),
