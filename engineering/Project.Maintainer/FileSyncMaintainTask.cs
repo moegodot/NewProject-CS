@@ -28,10 +28,6 @@ public sealed class FileSyncMaintainTask(ILogger logger,
             Logger.Verbose("copy file from {src} to {dst}", upstream, local);
             File.Delete(local);
             File.Copy(upstream, local);
-        }
-
-        if (!Directory.Exists(upstream))
-        {
             return;
         }
         Logger.Verbose("copy directory from {src} to {dst}", upstream, local);
