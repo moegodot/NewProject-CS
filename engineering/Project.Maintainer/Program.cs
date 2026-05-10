@@ -13,7 +13,7 @@ sealed class Program
     public const string UniqueBrandStartMarker = "BEGIN";
     public const string UniqueBrandEndMarker = "END";
 
-    static int Main(string[] args)
+    static async Task<int> Main(string[] args)
     {
         var log = new LoggerConfiguration()
                   .WriteTo.Console(
@@ -27,7 +27,7 @@ sealed class Program
         builder.RegisterInstance(log).AsSelf().As<ILogger>().SingleInstance();
         builder.RegisterType<Maintaining>().AsSelf().SingleInstance();
         builder.RegisterType<GitService>().AsSelf().SingleInstance();
-        using var container = builder.Build();
+        await using var container = builder.Build();
 
         var logger = container.Resolve<ILogger>().ForContext<Program>();
 
@@ -39,7 +39,7 @@ sealed class Program
             foreach (var task in maintainTasks)
             {
                 logger.Information("execute {IMaintainTask}", task.GetType().Name);
-                task.Maintain(maintaining).GetAwaiter().GetResult();
+                await task.Maintain(maintaining);
             }
         }
         catch (Exception exception)

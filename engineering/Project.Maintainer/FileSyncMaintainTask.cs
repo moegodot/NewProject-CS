@@ -22,7 +22,6 @@ public sealed class FileSyncMaintainTask(ILogger logger,
     {
         string upstream = Path.Combine(Git.UpstreamGitRepoPath, path);
         string local = Path.Combine(maintaining.ProjectRoot, path);
-        Git.ShallowCheckout(path);
 
         if (File.Exists(upstream))
         {
@@ -47,7 +46,6 @@ public sealed class FileSyncMaintainTask(ILogger logger,
         string paths = path;
         string upstream = Path.Combine(Git.UpstreamGitRepoPath, paths);
         string local = Path.Combine(maintaining.ProjectRoot, paths);
-        await Git.ShallowCheckout(paths);
 
         if (!File.Exists(upstream))
         {
@@ -63,19 +61,35 @@ public sealed class FileSyncMaintainTask(ILogger logger,
 
     public async Task Maintain(Maintaining maintaining)
     {
+        List<(Overlay, FileSystemSync)> overlays = [];
+        List<(OverlayPart, FileSystemSync)> overlayParts = [];
+        List<string> paths = [];
+
         foreach (FileSystemSync fileSystemSync in FileSystemSyncs)
         {
+            paths.Add(fileSystemSync.Path);
             switch (fileSystemSync.Policy)
             {
-                case Overlay _:
-                    Overlay(fileSystemSync.Path, maintaining);
+                case Overlay overlay:
+                    overlays.Add((overlay, fileSystemSync));
                     break;
                 case OverlayPart overlayPart:
-                    await OverlayPart(fileSystemSync.Path, overlayPart, maintaining);
+                    overlayParts.Add((overlayPart, fileSystemSync));
                     break;
                 default:
                     throw new InvalidOperationException($"unknown {fileSystemSync.GetType().FullName}");
             }
+        }
+
+        await Git.ShallowCheckout([.. paths]);
+
+        foreach (var overlay in overlays)
+        {
+            Overlay(overlay.Item2.Path, maintaining);
+        }
+        foreach (var overlay in overlayParts)
+        {
+            await OverlayPart(overlay.Item2.Path, overlay.Item1, maintaining);
         }
     }
 }

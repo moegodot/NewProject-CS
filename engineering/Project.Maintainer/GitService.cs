@@ -29,14 +29,16 @@ public class GitService
                           directoryInfo.Name);
     }
 
-    public Task ShallowCheckout(string fileOrDir)
+    public Task ShallowCheckout(params string[] fileOrDir)
     {
         return Helper.Git(Logger,
                    UpstreamGitRepoPath,
-                   "sparse-checkout",
+                   ["sparse-checkout",
                    "set",
                    "--skip-checks",
-                   fileOrDir);
+                   ..fileOrDir
+                   ]
+                   );
     }
 
     public Task Update()
@@ -58,7 +60,13 @@ public class GitService
 
         Directory.CreateDirectory(Directory.GetParent(UpstreamGitRepoPath)!.FullName);
 
-        ShallowClone().GetAwaiter().GetResult();
-        Update().GetAwaiter().GetResult();
+        if (Directory.Exists(UpstreamGitRepoPath))
+        {
+            Update().GetAwaiter().GetResult();
+        }
+        else
+        {
+            ShallowClone().GetAwaiter().GetResult();
+        }
     }
 }
