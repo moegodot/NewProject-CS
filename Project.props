@@ -29,6 +29,14 @@
 
     <WarningLevel>4</WarningLevel>
     <IsPackable>false</IsPackable>
+
+    <AnalysisLevel>latest</AnalysisLevel>
+    <AnalysisMode>Recommended</AnalysisMode>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+
+    <NuGetAudit>true</NuGetAudit>
+    <NuGetAuditMode>all</NuGetAuditMode>
+    <NuGetAuditLevel>moderate</NuGetAuditLevel>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -37,6 +45,9 @@
 
     <IsCliProject>false</IsCliProject>
     <IsCliProject Condition="$(MSBuildProjectName.EndsWith('.Cli'))">true</IsCliProject>
+
+    <IsSharedProject>false</IsSharedProject>
+    <IsSharedProject Condition="$(MSBuildProjectName.EndsWith('.Shared'))">true</IsSharedProject>
 
     <IsGeneratorProject>false</IsGeneratorProject>
     <IsGeneratorProject Condition="$(MSBuildProjectName.EndsWith('.Generator'))">true</IsGeneratorProject>
@@ -52,6 +63,10 @@
 
     <IsBenchmarkProject>false</IsBenchmarkProject>
     <IsBenchmarkProject Condition="$(MSBuildProjectName.EndsWith('.Benchmarks'))">true</IsBenchmarkProject>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(IsSharedProject)' == 'true'">
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(IsTestProject)' != 'true'">
@@ -79,15 +94,13 @@
     <None Include="$(TargetPath)" Pack="true" PackagePath="analyzers/dotnet/cs" />
   </ItemGroup>
 
-  <PropertyGroup Condition="'$(IsAnalyzerTestProject)' == 'true' OR '$(IsAnalyzerTestProject)' == 'true'" >
+  <PropertyGroup Condition="'$(IsAnalyzerTestProject)' == 'true' OR '$(IsGeneratorTestProject)' == 'true'" >
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-    <CompilerGeneratedFilesOutputPath>_generated</CompilerGeneratedFilesOutputPath>
+    <CompilerGeneratedFilesOutputPath>$(MSBuildProjectDirectory)/obj/generated</CompilerGeneratedFilesOutputPath>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(IsAnalyzerTestProject)' == 'true' OR '$(IsGeneratorTestProject)' == 'true'">
     <PackageReference Include="Microsoft.CodeAnalysis"/>
-    <Compile Remove="_generated/**/*.cs" />
-    <None Include="_generated/**/*.cs" />
   </ItemGroup>
 
   <ItemGroup>

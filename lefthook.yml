@@ -6,4 +6,6 @@ commit-msg:
 pre-commit:
   jobs:
     - name: lint-format
-      run: bunx dprint check
+      run: bunx dprint check --config ./dprint.json
+    - name: lint-leak
+      run: gitleaks git . --config ./gitleaks.toml --report-path reports/gitleaks/gitleaks-report.json --baseline-path reports/gitleaks/gitleaks-report.json

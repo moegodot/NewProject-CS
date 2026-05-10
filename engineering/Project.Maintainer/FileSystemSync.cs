@@ -3,7 +3,4 @@
 
 namespace Project.Maintainer;
 
-public class Icon : Maintenance
-{
-    public override string Paths() => "images/icon.png";
-}
+public sealed record FileSystemSync(string Path, SyncPolicy Policy);

@@ -3,13 +3,14 @@
 model = "gpt-5.4"
 model_reasoning_effort = "high"
 
-review_model = "gpt-5.5"
+review_model = "gpt-5.4-mini"
 
 personality = "pragmatic"
 model_reasoning_summary = "concise"
 
 sandbox_mode = "workspace-write"
 approval_policy = "on-request"
+approvals_reviewer = ""
 
 web_search = "live"
 

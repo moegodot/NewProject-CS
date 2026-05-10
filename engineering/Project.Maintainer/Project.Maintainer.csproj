@@ -5,4 +5,10 @@
       <WarningLevel>3</WarningLevel>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Autofac" />
+      <PackageReference Include="Serilog" />
+      <PackageReference Include="Serilog.Sinks.Console" />
+    </ItemGroup>
+
 </Project>
