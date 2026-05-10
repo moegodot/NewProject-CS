@@ -12,7 +12,7 @@ public class Maintaining
 
     public string ProjectRoot { get; }
 
-    public ConcurrentDictionary<string, object?> Items { get; }
+    public ConcurrentDictionary<string, object?> Items { get; } = [];
 
     public const string RootMarker = ".godot.async.proj.root";
 

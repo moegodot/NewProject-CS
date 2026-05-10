@@ -9,6 +9,8 @@ public class FileBasedTask(GitService gitService) : IMaintainTask
 
     public async Task Maintain(Maintaining maintaining)
     {
+        ArgumentNullException.ThrowIfNull(maintaining);
+
         var value = (HashSet<string>)
             (maintaining.Items.GetOrAdd(nameof(FileBasedTask), new HashSet<string>())
              ?? throw new InvalidOperationException("expect a nonnull HashSet<String> but got null"));
