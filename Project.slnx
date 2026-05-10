@@ -7,7 +7,7 @@
     <File Path="global.json" />
     <File Path=".gitignore" />
     <File Path=".editorconfig" />
-    <File Path="Packages.targets" />
+    <File Path="Packages.props" />
     <File Path="Project.props" />
     <File Path="README.md" />
     <File Path="AGENTS.md" />

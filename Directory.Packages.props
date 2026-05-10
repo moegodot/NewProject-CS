@@ -1,4 +1,4 @@
 <Project>
-  <Import Project="$(MSBuildThisFileDirectory)/Packages.targets" />
+  <Import Project="$(MSBuildThisFileDirectory)/Packages.props" />
 </Project>
 
