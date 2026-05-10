@@ -26,7 +26,7 @@ public class FileContentExistsCheckTask(ILogger logger,
             if (!(await File.ReadAllTextAsync(Path.Combine(root, contentExistence.Path)))
                .Contains(contentExistence.Content))
             {
-                throw new InvalidOperationException($"file {contentExistence.Path} do not contains:{contentExistence.Content}");
+                throw new InvalidOperationException($"file {contentExistence.Path} do not contains:\n{contentExistence.Content}");
             }
         }
     }

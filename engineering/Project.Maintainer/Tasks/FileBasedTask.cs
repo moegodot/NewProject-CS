@@ -11,17 +11,23 @@ public class FileBasedTask(GitService gitService) : IMaintainTask
     {
         ArgumentNullException.ThrowIfNull(maintaining);
 
+        var root = maintaining.ProjectRoot;
+
         var value = (HashSet<string>)
             (maintaining.Items.GetOrAdd(nameof(FileBasedTask), new HashSet<string>())
              ?? throw new InvalidOperationException("expect a nonnull HashSet<String> but got null"));
 
-        var files = PrepareFiles(maintaining).Distinct().Where(s => !value.Contains(s)).ToArray();
+        var files = PrepareFiles(maintaining)
+                    .Distinct()
+                    .Select(s => (s, Path.Combine(root, s)))
+                    .Where(s => !value.Contains(s.Item2))
+                    .ToArray();
 
-        await GitService.ShallowCheckout(files);
+        await GitService.ShallowCheckout([.. files.Select(s => s.s)]);
 
-        foreach (string file in files)
+        foreach (var file in files)
         {
-            value.Add(file);
+            value.Add(file.Item2);
         }
 
         await Execute(maintaining);

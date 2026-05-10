@@ -21,7 +21,7 @@ public class FileContentModule : Module
                 "test": {
                   "runner": "Microsoft.Testing.Platform"
                 }
-                """),
+                """.Trim()),
 
             new("dotnet-tools.json",
                 """
@@ -36,7 +36,7 @@ public class FileContentModule : Module
                     "rollForward": false
                   }
                 }
-                """),
+                """.Trim()),
             new("Directory.Build.props", """<Import Project="$(MSBuildThisFileDirectory)/Project.props" />"""),
             new ("Directory.Build.targets", """<Import Project="$(MSBuildThisFileDirectory)/Project.targets" />"""),
             new ("Directory.Packages.targets", """<Import Project="$(MSBuildThisFileDirectory)/Packages.targets" />"""),
