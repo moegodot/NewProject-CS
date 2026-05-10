@@ -8,7 +8,7 @@ namespace Project.Maintainer.Tasks;
 public class FileContentExistsCheckTask(ILogger logger,
                                         IEnumerable<FileContentExistence> fileContentExistences,
                                         GitService git)
-    : FileBasedTask
+    : FileBasedTask(git)
 {
     public ILogger Logger { get; } = logger;
 

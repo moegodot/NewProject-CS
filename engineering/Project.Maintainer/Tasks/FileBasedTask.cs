@@ -3,9 +3,9 @@
 
 namespace Project.Maintainer;
 
-public class FileBasedTask : IMaintainTask
+public class FileBasedTask(GitService gitService) : IMaintainTask
 {
-    public required GitService GitService { get; init; }
+    public GitService GitService { get; } = GitService;
 
     public async Task Maintain(Maintaining maintaining)
     {

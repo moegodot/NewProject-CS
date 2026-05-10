@@ -9,7 +9,7 @@ namespace Project.Maintainer.Tasks;
 public sealed class FileSyncMaintainTask(ILogger logger,
                                        IEnumerable<FileSystemSync> fileSystemSyncs,
                                        GitService git)
-    : FileBasedTask
+    : FileBasedTask(git)
 {
     public ImmutableArray<FileSystemSync> FileSystemSyncs { get; } = [.. fileSystemSyncs];
 
