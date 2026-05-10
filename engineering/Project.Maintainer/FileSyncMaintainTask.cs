@@ -49,11 +49,16 @@ public sealed class FileSyncMaintainTask(ILogger logger,
 
         if (!File.Exists(upstream))
         {
+            Logger.Verbose("copy file from {src} to {dst}", upstream, local);
             File.Delete(local);
             File.Copy(upstream, local);
-            Logger.Verbose("copy file from {src} to {dst}", upstream, local);
+            return;
         }
 
+        Logger.Verbose("update file at {src} from {dst} for {mark}",
+                       local,
+                       upstream,
+                       part.PartStartMark);
         await File.WriteAllTextAsync(local,
                                      part.Replace(await File.ReadAllTextAsync(local),
                                                   part.Extract(await File.ReadAllTextAsync(upstream))));
