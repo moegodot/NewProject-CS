@@ -26,6 +26,7 @@ sealed class Program
         builder.RegisterAssemblyModules(typeof(Program).Assembly);
         builder.RegisterInstance(log).AsSelf().As<ILogger>().SingleInstance();
         builder.RegisterType<Maintaining>().AsSelf().SingleInstance();
+        builder.RegisterType<GitService>().AsSelf().SingleInstance();
         await using var container = builder.Build();
 
         var logger = container.Resolve<ILogger>().ForContext<Program>();
