@@ -18,7 +18,7 @@ public class FileContentModule : Module
             new("dotnet-tools.json", "nuget-license"),
             new("Directory.Build.props", """<Import Project="$(MSBuildThisFileDirectory)/Project.props" />"""),
             new ("Directory.Build.targets", """<Import Project="$(MSBuildThisFileDirectory)/Project.targets" />"""),
-            new ("Directory.Packages.props", """<Import Project="$(MSBuildThisFileDirectory)/Packages.targets" />"""),
+            new ("Directory.Packages.props", """<Import Project="$(MSBuildThisFileDirectory)/Packages.props" />"""),
         ];
 
         foreach (FileContentExistence item in items)

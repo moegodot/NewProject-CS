@@ -17,7 +17,7 @@ public class SyncFileModule : Module
                 new("images/icon.kra", new Overlay()),
                 new("images/readme_image_1.png", new Overlay()),
                 new("images/contributing_image_1.png", new Overlay()),
-                new("Packages.targets", new Overlay()),
+                new("Packages.props", new Overlay()),
                 new("dprint.json", new Overlay()),
                 new("gitleaks.toml", new Overlay()),
                 new("commitlint.config.js", new Overlay()),
