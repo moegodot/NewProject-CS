@@ -17,14 +17,16 @@ public class GitService
 
     private Task ShallowClone()
     {
+        var directoryInfo = new DirectoryInfo(UpstreamGitRepoPath);
         return Helper.Git(Logger,
-                          Directory.GetParent(UpstreamGitRepoPath)!.FullName,
+                          directoryInfo.Parent?.FullName
+                          ?? throw new InvalidOperationException("the target directory have no parent"),
                           "clone",
                           "--depth=1",
                           "--filter=blob:none",
                           "--sparse",
                           Upstream,
-                          Path.GetFileName(UpstreamGitRepoPath));
+                          directoryInfo.Name);
     }
 
     public Task ShallowCheckout(string fileOrDir)
