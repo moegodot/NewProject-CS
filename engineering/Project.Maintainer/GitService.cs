@@ -65,7 +65,8 @@ public class GitService
 
         Directory.CreateDirectory(Directory.GetParent(UpstreamGitRepoPath)!.FullName);
 
-        if (Directory.Exists(UpstreamGitRepoPath))
+        if (Directory.Exists($"{UpstreamGitRepoPath}/.git")
+            && (Directory.GetFileSystemEntries($"{UpstreamGitRepoPath}/.git").Length != 0))
         {
             Update().GetAwaiter().GetResult();
         }

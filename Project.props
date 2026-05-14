@@ -53,6 +53,9 @@
     <IsCliProject>false</IsCliProject>
     <IsCliProject Condition="$(MSBuildProjectName.EndsWith('.Cli'))">true</IsCliProject>
 
+    <IsSampleProject>false</IsSampleProject>
+    <IsSampleProject Condition="$(MSBuildProjectName.EndsWith('.Sample'))">true</IsSampleProject>
+
     <IsSharedProject>false</IsSharedProject>
     <IsSharedProject Condition="$(MSBuildProjectName.EndsWith('.Shared'))">true</IsSharedProject>
 
@@ -81,6 +84,7 @@
     <OutputType>Library</OutputType>
     <OutputType Condition="'$(IsCliProject)' == 'true'">Exe</OutputType>
     <OutputType Condition="'$(IsBenchmarkProject)' == 'true'">Exe</OutputType>
+    <OutputType Condition="'$(IsSampleProject)' == 'true'">Exe</OutputType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(IsTestProject)' == 'true'">
