@@ -1,7 +1,7 @@
 commit-msg:
   jobs:
-#    - name: lint-commit-msg
-#      run: pnx commitlint --edit "{1}"
+    - name: lint-commit-msg
+      run: pnx commitlint --edit "{1}"
 
 pre-commit:
   jobs:

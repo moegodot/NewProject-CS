@@ -10,6 +10,7 @@
     <File Path="Packages.props" />
     <File Path="Project.props" />
     <File Path="README.md" />
+    <File Path=".releaserc.json" />
     <File Path="AGENTS.md" />
     <File Path="CONTRIBUTING.md" />
     <File Path=".gitattributes" />

@@ -16,6 +16,9 @@ init:
     pnpm install
     lefthook install
 
+commit:
+    pnpm cz
+
 build:
     dotnet build Projects.slnx
 
