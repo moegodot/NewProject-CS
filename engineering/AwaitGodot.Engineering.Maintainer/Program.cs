@@ -5,7 +5,7 @@ using System.Text.Unicode;
 using Autofac;
 using Serilog;
 
-namespace Project.Maintainer;
+namespace AwaitGodot.Engineering.Maintainer;
 
 sealed class Program
 {

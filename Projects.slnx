@@ -36,7 +36,7 @@
   <Folder Name="/building/">
   </Folder>
   <Folder Name="/engineering/">
-    <Project Path="engineering/Project.Maintainer/Project.Maintainer.csproj" />
+    <Project Path="engineering\AwaitGodot.Engineering.Maintainer\AwaitGodot.Engineering.Maintainer.csproj" />
   </Folder>
   <Folder Name="/documents/" />
 </Solution>

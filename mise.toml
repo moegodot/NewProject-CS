@@ -1,0 +1,13 @@
+
+[tools]
+node = '26'
+pnpm = '11'
+python = '3.14'
+uv = 'latest'
+sops = 'latest'
+age = 'latest'
+just = 'latest'
+lefthook = 'latest'
+dotnet = '10'
+powershell = 'latest'
+gitleaks = 'latest'

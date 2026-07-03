@@ -4,7 +4,7 @@
 using System.Collections.Immutable;
 using Serilog;
 
-namespace Project.Maintainer.Tasks;
+namespace AwaitGodot.Engineering.Maintainer.Tasks;
 
 public sealed class FileSyncMaintainTask(ILogger logger,
                                        IEnumerable<FileSystemSync> fileSystemSyncs,

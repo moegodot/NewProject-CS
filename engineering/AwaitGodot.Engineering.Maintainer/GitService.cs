@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Serilog;
 
-namespace Project.Maintainer;
+namespace AwaitGodot.Engineering.Maintainer;
 
 public class GitService
 {

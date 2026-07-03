@@ -2,9 +2,9 @@
 // Licensed under the GNU Affero General Public License v3-or-later license.
 
 using Autofac;
-using Project.Maintainer.Tasks;
+using AwaitGodot.Engineering.Maintainer.Tasks;
 
-namespace Project.Maintainer.Modules;
+namespace AwaitGodot.Engineering.Maintainer.Modules;
 
 public class MaintainTaskModule : Module
 {

@@ -3,7 +3,7 @@
 
 using Autofac;
 
-namespace Project.Maintainer.Modules;
+namespace AwaitGodot.Engineering.Maintainer.Modules;
 
 public class SyncFileModule : Module
 {

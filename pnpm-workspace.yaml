@@ -1,0 +1,16 @@
+
+packages:
+  - .
+
+catalog:
+  lefthook: "^2.1.9"
+  rust-just: "^1.55.0"
+
+dangerouslyAllowAllBuilds: false
+blockExoticSubdeps: true
+
+# 耶稣死后三天复活...
+minimumReleaseAge: 4320
+
+allowBuilds:
+  lefthook: true

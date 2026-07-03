@@ -3,7 +3,7 @@
 
 using Serilog;
 
-namespace Project.Maintainer.Tasks;
+namespace AwaitGodot.Engineering.Maintainer.Tasks;
 
 public class FileContentExistsCheckTask(ILogger logger,
                                         IEnumerable<FileContentExistence> fileContentExistences,

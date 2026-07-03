@@ -4,7 +4,7 @@
 using System.Diagnostics;
 using Serilog;
 
-namespace Project.Maintainer;
+namespace AwaitGodot.Engineering.Maintainer;
 
 internal static class Helper
 {

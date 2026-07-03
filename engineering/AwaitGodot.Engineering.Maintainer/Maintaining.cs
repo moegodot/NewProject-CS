@@ -4,7 +4,7 @@
 using System.Collections.Concurrent;
 using Serilog;
 
-namespace Project.Maintainer;
+namespace AwaitGodot.Engineering.Maintainer;
 
 public class Maintaining
 {
