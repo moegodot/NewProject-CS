@@ -2,7 +2,7 @@
 
 <!-- TitleImage ^await GodotAsync()$ BEGIN -->
 
-![打碎旧世界,建设新世界](https://raw.githubusercontent.com/moegodot/NewProject-CS/refs/heads/master/images/readme_image_1.png)
+![打碎旧世界,建设新世界](https://raw.githubusercontent.com/moegodot/NewProject-CS/refs/heads/master/images/logo/icon/awaitgodot.card.png)
 
 <!-- TitleImage ^await GodotAsync()$ END -->
 

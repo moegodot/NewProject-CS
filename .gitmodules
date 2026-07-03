@@ -1,0 +1,3 @@
+[submodule "images/logo"]
+	path = images/logo
+	url = https://github.com/Await-Godot/logo

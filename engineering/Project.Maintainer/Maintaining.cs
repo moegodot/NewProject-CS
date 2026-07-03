@@ -14,7 +14,7 @@ public class Maintaining
 
     public ConcurrentDictionary<string, object?> Items { get; } = [];
 
-    public const string RootMarker = ".godot.async.proj.root";
+    public const string RootMarker = ".await.godot.project.root";
 
     public Maintaining(ILogger logger)
     {
@@ -27,6 +27,8 @@ public class Maintaining
             current = Directory.GetParent(current)?.FullName ?? throw new InvalidOperationException($"failed to find {RootMarker}");
             file = Path.Combine(current, RootMarker);
         }
+
+        var _ = async () => await File.AppendAllTextAsync("", "");
 
         ProjectRoot = current;
         Logger.Information("Locates project root path {project_root}", ProjectRoot);
