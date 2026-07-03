@@ -22,6 +22,7 @@ public class GitService
                           directoryInfo.Parent?.FullName
                           ?? throw new InvalidOperationException("the target directory have no parent"),
                           "clone",
+                          "--recurse-submodules",
                           "--depth=1",
                           "--filter=blob:none",
                           "--sparse",
